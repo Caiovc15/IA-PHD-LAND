@@ -534,11 +534,13 @@ document.addEventListener('DOMContentLoaded', () => {
     multiplicationObserver.observe(multiplicationSection);
   }
 
-  // 10. Soluções Section Scroll Reveal Animations
+  // 10. Soluções Section Scroll Reveal & Accordion Interaction
   const solutionsSection = document.getElementById('solucoes');
   const solutionsItems = document.querySelectorAll('.solutions-item');
+  const solutionsList = document.querySelector('.solutions-list');
   
   if (solutionsSection && solutionsItems.length > 0) {
+    // Scroll Reveal staggered entries
     const solutionsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -553,6 +555,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
 
     solutionsObserver.observe(solutionsSection);
+
+    // Accordion Hover & Tap Interactions
+    // Set first solution (01) active by default
+    solutionsItems[0].classList.add('active');
+
+    const setActiveSolution = (index) => {
+      solutionsItems.forEach((item, idx) => {
+        if (idx === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    };
+
+    solutionsItems.forEach((item, index) => {
+      // Hover event for desktop
+      item.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        setActiveSolution(index);
+      });
+
+      // Click event for touch devices / mobile
+      item.addEventListener('click', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        setActiveSolution(index);
+      });
+    });
+
+    // Reset back to first solution when mouse leaves the accordion container
+    if (solutionsList) {
+      solutionsList.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        setActiveSolution(0);
+      });
+    }
   }
 
   // 11. Quem Lidera Section Scroll Reveal Animations
