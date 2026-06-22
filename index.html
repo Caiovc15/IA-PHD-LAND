@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA PhD | Engenharia de Sistemas Agênticos</title>
+  <meta name="description"
+    content="Transformamos empresas em organizações agênticas. Construímos funcionários de IA que operam, decidem e executam tarefas reais do seu negócio com método e segurança.">
+
+  <!-- Fonts: Sora (headings) and Inter Tight (clean body/subheadings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,300&family=Sora:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+
+<body>
+  <!-- Subtle Technical Grid Overlay -->
+  <div class="technical-grid" aria-hidden="true"></div>
+
+  <!-- Minimal Navigation Bar -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo-group" aria-label="IA PhD Home">
+        <!-- Stylized Mandelbrot Logo Mark -->
+        <img class="mandelbrot-logo" src="assets/logo.png" alt="" width="28" height="28">
+        <span class="logo-text">IA PhD</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Navegação principal">
+        <a href="#metodologia" class="nav-link">Metodologia</a>
+        <a href="#solucoes" class="nav-link">Soluções</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#contato" class="btn btn-outline-nav">Falar com a IA PhD</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-container">
+      <!-- Left Hero Column -->
+      <div class="hero-content">
+        <span class="hero-label scroll-reveal">Ia PhD</span>
+        <h1 class="hero-headline">Transformamos empresas em organizações agênticas</h1>
+        <p class="hero-subheadline scroll-reveal">
+          Construímos funcionários de IA que operam, decidem e executam tarefas reais do seu negócio — com método e
+          segurança.
+        </p>
+        <div class="hero-ctas scroll-reveal">
+          <a href="#diagnostico" class="btn btn-primary">Agende um diagnóstico</a>
+          <a href="#metodologia" class="btn-text-link">Conheça a metodologia <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- Right Hero Column (Visual Agentic Network) -->
+      <div class="hero-visual scroll-reveal">
+        <div class="visual-wrapper">
+          <!-- Main Interactive SVG Network -->
+          <svg class="network-svg" viewBox="0 0 600 600" fill="none" stroke="currentColor">
+
+
+            <!-- 3D Wireframe Sphere Layers (latitude and longitude) -->
+            <g id="sphere-latitudes"></g>
+            <g id="sphere-longitudes"></g>
+
+            <!-- Connections Layer (JS driven) -->
+            <g id="connections-layer"></g>
+
+            <!-- Flowing Signal Dots Layer (JS driven) -->
+            <g id="signals-layer"></g>
+
+            <!-- Nodes Layer -->
+            <g class="network-nodes">
+              <!-- Outer Nodes -->
+              <g class="node-group" id="node-interface" data-agent="Agente de Interface"
+                data-desc="Orquestração de UI e feedback em tempo real.">
+                <circle cx="300" cy="300" r="5" class="node-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-inner" />
+              </g>
+              <g class="node-group" id="node-analista" data-agent="Agente Analista"
+                data-desc="Consumo de dados, métricas e análises preditivas.">
+                <circle cx="300" cy="300" r="5" class="node-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-inner" />
+              </g>
+              <g class="node-group" id="node-operacional" data-agent="Agente Operacional"
+                data-desc="Execução de chamadas de API externas e escrita.">
+                <circle cx="300" cy="300" r="5" class="node-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-inner" />
+              </g>
+              <g class="node-group" id="node-seguranca" data-agent="Agente de Segurança"
+                data-desc="Auditoria em tempo real e validação de permissões.">
+                <circle cx="300" cy="300" r="5" class="node-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-inner" />
+              </g>
+              <g class="node-group" id="node-raciocinio" data-agent="Agente de Raciocínio"
+                data-desc="Planejamento de tarefas complexas e reflexão.">
+                <circle cx="300" cy="300" r="5" class="node-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-inner" />
+              </g>
+
+              <!-- Secondary helper nodes -->
+              <g class="node-group" id="node-conhecimento" data-agent="Base de Conhecimento"
+                data-desc="Indexação vetorial de dados institucionais.">
+                <circle cx="300" cy="300" r="4" class="node-outer-sub" />
+                <circle cx="300" cy="300" r="2" class="node-inner-sub" />
+              </g>
+              <g class="node-group" id="node-barramento" data-agent="Barramento de Eventos"
+                data-desc="Mensageria interna e sincronização.">
+                <circle cx="300" cy="300" r="4" class="node-outer-sub" />
+                <circle cx="300" cy="300" r="2" class="node-inner-sub" />
+              </g>
+
+              <!-- CORE ACCENTED NODE (Orchestrator at the exact center) -->
+              <g class="node-group core-node" id="node-core" data-agent="Orquestrador Central"
+                data-desc="Distribuição inteligente e gestão do estado global dos agentes.">
+                <circle cx="300" cy="300" r="5" class="node-core-outer" />
+                <circle cx="300" cy="300" r="2.5" class="node-core-inner" />
+              </g>
+            </g>
+          </svg>
+
+          <!-- Interactive Tooltip Overlay (Controlled by JS) -->
+          <div class="agent-tooltip" id="agent-tooltip">
+            <h4 class="tooltip-title">Sistema Agêntico</h4>
+            <p class="tooltip-desc">Passe o mouse sobre os nós da rede para inspecionar os funcionários de IA.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- O que fazemos Section -->
+  <section class="pillars-section" id="o-que-fazemos">
+    <div class="pillars-container">
+      <div class="pillars-header">
+        <span class="pillars-label scroll-reveal">o que fazemos</span>
+        <h2 class="pillars-title scroll-reveal">Do diagnóstico à operação autônoma</h2>
+        <p class="pillars-subtitle scroll-reveal">
+          Não entregamos uma ferramenta. Entregamos uma operação que funciona sozinha.
+        </p>
+      </div>
+
+      <div class="pillars-flow-container">
+        <!-- SVG Line Background -->
+        <div class="flow-svg-wrapper">
+          <svg class="flow-svg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none" stroke="currentColor">
+            <!-- Tangled Chaos Strands (Left) -->
+            <path class="flow-sub-line draw-path" d="M 0 150 C 50 140, 100 250, 150 220 C 170 210, 185 200, 200 200" stroke="#0A0A0A" stroke-width="1.5" opacity="0.15" />
+            <path class="flow-sub-line draw-path" d="M 0 250 C 60 270, 110 160, 160 200 C 175 210, 185 200, 200 200" stroke="#0A0A0A" stroke-width="1.5" opacity="0.15" />
+            <path class="flow-sub-line draw-path" d="M 0 280 C 70 180, 120 250, 160 180 C 180 190, 190 200, 200 200" stroke="#0A0A0A" stroke-width="1.5" opacity="0.15" />
+
+            <!-- Main Spine (Accented strand in Slate Blue converging & running full length) -->
+            <path class="flow-main-line draw-path" d="M 0 180 C 50 220, 100 160, 150 190 C 170 200, 185 200, 200 200 L 1000 200 L 1200 200" stroke="#1A3A5C" stroke-width="1.5" opacity="0.7" />
+
+            <!-- Branching Network Links (Right) -->
+            <path class="flow-branch-line draw-path" d="M 1000 200 L 1100 120 L 1200 140" stroke="#0A0A0A" stroke-width="1.5" opacity="0.2" />
+            <path class="flow-branch-line draw-path" d="M 1000 200 L 1080 280 L 1200 260" stroke="#0A0A0A" stroke-width="1.5" opacity="0.2" />
+            <path class="flow-branch-line draw-path" d="M 1100 120 L 1080 280" stroke="#0A0A0A" stroke-width="1.5" opacity="0.15" />
+
+            <!-- Traveling Signal Data Particle (CSS Animated) -->
+            <circle class="moving-dot" cy="200" r="3.5" fill="#1A3A5C" />
+
+            <!-- Nodes along the main axis at grid centers -->
+            <circle cx="200" cy="200" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+            <circle cx="600" cy="200" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+            <circle cx="1000" cy="200" r="5.5" class="agent-node core-node-accent" fill="#F4F3F0" stroke="#1A3A5C" stroke-width="1.5" />
+            
+            <!-- Nodes on branches -->
+            <circle cx="1100" cy="120" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+            <circle cx="1080" cy="280" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+            <circle cx="1200" cy="140" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+            <circle cx="1200" cy="260" r="4.5" class="agent-node" fill="#F4F3F0" stroke="#0A0A0A" stroke-width="1.5" />
+          </svg>
+        </div>
+
+        <!-- Strict 3-Column Grid -->
+        <div class="pillars-grid">
+          <!-- Stage 01 -->
+          <div class="flow-stage stage-above stage-1 scroll-reveal">
+            <div class="stage-content">
+              <div class="stage-number">01</div>
+              <h3 class="stage-title">Diagnóstico e modelagem</h3>
+              <p class="stage-desc">Mapeamos sua operação e identificamos onde os agentes de IA geram mais valor.</p>
+            </div>
+          </div>
+          
+          <!-- Stage 02 -->
+          <div class="flow-stage stage-below stage-2 scroll-reveal">
+            <div class="stage-content">
+              <div class="stage-number">02</div>
+              <h3 class="stage-title">Engenharia de agentes</h3>
+              <p class="stage-desc">Construímos funcionários agênticos sob medida, com identidade, habilidades e responsabilidades definidas.</p>
+            </div>
+          </div>
+          
+          <!-- Stage 03 -->
+          <div class="flow-stage stage-above stage-3 scroll-reveal">
+            <div class="stage-content">
+              <div class="stage-number">03</div>
+              <h3 class="stage-title">Orquestração e operação</h3>
+              <p class="stage-desc">Coordenamos uma equipe de agentes que opera de forma contínua, integrada e segura.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que é um funcionário agêntico Section -->
+  <section class="agentic-employee-section" id="o-que-e">
+    <div class="agentic-container">
+      <div class="agentic-header">
+        <span class="agentic-label scroll-reveal">a diferença</span>
+        <h2 class="agentic-title scroll-reveal">Não é um chatbot. É um funcionário.</h2>
+        <p class="agentic-subtitle scroll-reveal">
+          A maioria das IAs responde quando perguntada. Um funcionário agêntico age por conta própria.
+        </p>
+      </div>
+
+      <div class="comparison-table-container scroll-reveal">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="col-criterion">Critério</th>
+              <th class="col-tool">Ferramenta de IA</th>
+              <th class="col-agent"><span class="header-indicator"></span>Funcionário agêntico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="cell-criterion">Iniciativa</td>
+              <td class="cell-tool">Responde quando perguntada</td>
+              <td class="cell-agent"><span class="agent-accent-dot"></span>Age por conta própria</td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-criterion">Comando</td>
+              <td class="cell-tool">Espera sua instrução</td>
+              <td class="cell-agent"><span class="agent-accent-dot"></span>Decide o próximo passo</td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-criterion">Execução</td>
+              <td class="cell-tool">Entrega texto ou resposta</td>
+              <td class="cell-agent"><span class="agent-accent-dot"></span>Executa a tarefa do início ao fim</td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-criterion">Disponibilidade</td>
+              <td class="cell-tool">Funciona quando você usa</td>
+              <td class="cell-agent"><span class="agent-accent-dot"></span>Opera 24 horas por dia</td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-criterion">Autonomia</td>
+              <td class="cell-tool">Para quando você para</td>
+              <td class="cell-agent"><span class="agent-accent-dot"></span>Continua sem você</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- A metodologia Section -->
+  <section class="methodology-section" id="metodologia">
+    <div class="methodology-container">
+      <div class="methodology-header">
+        <span class="methodology-label scroll-reveal">a metodologia</span>
+        <h2 class="methodology-title scroll-reveal">Do mapa à organização agêntica</h2>
+        <p class="methodology-subtitle scroll-reveal">
+          Um método em cinco etapas para transformar sua operação em uma organização que opera sozinha.
+        </p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <!-- SVG progress line that draws as we scroll -->
+        <div class="timeline-line-container">
+          <svg class="timeline-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="50" y1="0" x2="50" y2="100" class="timeline-bg-line" />
+            <line x1="50" y1="0" x2="50" y2="100" class="timeline-progress-line" pathLength="1" />
+          </svg>
+        </div>
+
+        <div class="timeline-steps">
+          <!-- Step 01 (Right) -->
+          <div class="timeline-step step-right scroll-reveal" id="step-1">
+            <div class="step-marker-container">
+              <div class="step-marker"></div>
+            </div>
+            <div class="step-content-box">
+              <div class="step-number">01</div>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="6" cy="6" r="3" />
+                  <circle cx="18" cy="18" r="3" />
+                  <circle cx="18" cy="6" r="3" />
+                  <line x1="9" y1="6" x2="15" y2="6" />
+                  <line x1="6" y1="9" x2="15" y2="18" />
+                  <line x1="18" y1="9" x2="18" y2="15" />
+                </svg>
+              </div>
+              <h3 class="step-title">Modelagem</h3>
+              <p class="step-desc">Mapeamos as atividades dos seus colaboradores, entendemos os processos e identificamos onde os agentes de IA podem atuar.</p>
+              <div class="step-delivery">
+                <span class="delivery-label">entrega</span>
+                <p class="delivery-text">Mapa operacional dos processos, com as oportunidades de atuação para agentes de IA.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 02 (Left) -->
+          <div class="timeline-step step-left scroll-reveal" id="step-2">
+            <div class="step-marker-container">
+              <div class="step-marker"></div>
+            </div>
+            <div class="step-content-box">
+              <div class="step-number">02</div>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="12" cy="4" r="2" />
+                  <circle cx="12" cy="20" r="2" />
+                  <circle cx="4" cy="12" r="2" />
+                  <circle cx="20" cy="12" r="2" />
+                  <line x1="12" y1="6" x2="12" y2="8" />
+                  <line x1="12" y1="16" x2="12" y2="18" />
+                  <line x1="6" y1="12" x2="8" y2="12" />
+                  <line x1="16" y1="12" x2="18" y2="12" />
+                </svg>
+              </div>
+              <h3 class="step-title">Configuração</h3>
+              <p class="step-desc">Construímos a infraestrutura que permite a operação dos agentes: ambiente, canais, ferramentas e o painel central de gestão.</p>
+              <div class="step-delivery">
+                <span class="delivery-label">entrega</span>
+                <p class="delivery-text">Painel de Comando Agêntico configurado e pronto para coordenar os agentes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 03 (Right) -->
+          <div class="timeline-step step-right scroll-reveal" id="step-3">
+            <div class="step-marker-container">
+              <div class="step-marker"></div>
+            </div>
+            <div class="step-content-box">
+              <div class="step-number">03</div>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                  <line x1="12" y1="3" x2="12" y2="5" />
+                  <line x1="4" y1="6" x2="6" y2="7.5" />
+                  <line x1="20" y1="6" x2="18" y2="7.5" />
+                  <line x1="3" y1="13" x2="5" y2="13" />
+                  <line x1="21" y1="13" x2="19" y2="13" />
+                </svg>
+              </div>
+              <h3 class="step-title">Projetar</h3>
+              <p class="step-desc">Definimos identidade, conhecimento, habilidades, ferramentas e responsabilidades de cada agente, alinhados a uma função específica.</p>
+              <div class="step-delivery">
+                <span class="delivery-label">entrega</span>
+                <p class="delivery-text">Agente operacional projetado e alinhado aos objetivos do negócio.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 04 (Left) -->
+          <div class="timeline-step step-left scroll-reveal" id="step-4">
+            <div class="step-marker-container">
+              <div class="step-marker"></div>
+            </div>
+            <div class="step-content-box">
+              <div class="step-number">04</div>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l3 3 5-6" />
+                  <path d="M12 2a10 10 0 0 0-4 19" stroke-dasharray="2,2" />
+                </svg>
+              </div>
+              <h3 class="step-title">Experimentação</h3>
+              <p class="step-desc">Colocamos o agente em operação para validar seu desempenho em situações reais, executando tarefas e seguindo processos.</p>
+              <div class="step-delivery">
+                <span class="delivery-label">entrega</span>
+                <p class="delivery-text">Funcionário Agêntico validado, operando em ambiente real e gerando resultados.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 05 (Right) -->
+          <div class="timeline-step step-right scroll-reveal" id="step-5">
+            <div class="step-marker-container">
+              <div class="step-marker"></div>
+            </div>
+            <div class="step-content-box">
+              <div class="step-number">05</div>
+              <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="5" r="2.5" />
+                  <circle cx="5" cy="18" r="2" />
+                  <circle cx="12" cy="18" r="2" />
+                  <circle cx="19" cy="18" r="2" />
+                  <line x1="12" y1="7.5" x2="12" y2="16" />
+                  <path d="M5 16v-5h14v5" />
+                </svg>
+              </div>
+              <h3 class="step-title">Orquestração</h3>
+              <p class="step-desc">Estruturamos uma equipe de agentes coordenados, com o agente Main atuando como gestor que distribui tarefas e acompanha resultados.</p>
+              <div class="step-delivery">
+                <span class="delivery-label">entrega</span>
+                <p class="delivery-text">Organização Agêntica estruturada, com agentes especializados colaborando de forma integrada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O efeito multiplicador Section -->
+  <section class="multiplication-section" id="multiplicador">
+    <div class="multiplication-container">
+      <!-- Left Column: Copy -->
+      <div class="multiplication-content scroll-reveal">
+        <span class="multiplication-label">o efeito multiplicador</span>
+        <h2 class="multiplication-title">Um colaborador. Um departamento inteiro.</h2>
+        <p class="multiplication-text">
+          Você não precisa transformar a empresa toda de uma vez. Ao capacitar um único colaborador para modelar e construir agentes de IA, ele se torna a fonte que cria e coordena os funcionários agênticos de um departamento inteiro.
+        </p>
+        <p class="multiplication-reinforcement">
+          Uma pessoa capacitada. Uma operação que se multiplica — de dentro para fora, sem depender de ninguém de fora.
+        </p>
+      </div>
+
+      <!-- Right Column: Fractal SVG -->
+      <div class="multiplication-visual scroll-reveal">
+        <div class="fractal-wrapper">
+          <svg class="fractal-svg" viewBox="0 0 500 400" fill="none" stroke="currentColor">
+            <!-- Trunk -->
+            <path class="fractal-branch branch-trunk" d="M 60 200 L 160 200" stroke-width="1.5" />
+            
+            <!-- Level 1 Branches (2 branches) -->
+            <path class="fractal-branch branch-lvl1 accented-branch" d="M 160 200 L 260 100" stroke-width="1" />
+            <path class="fractal-branch branch-lvl1" d="M 160 200 L 260 300" stroke-width="1" />
+            
+            <!-- Level 2 Branches (4 branches) -->
+            <path class="fractal-branch branch-lvl2 accented-branch" d="M 260 100 L 360 50" stroke-width="1" />
+            <path class="fractal-branch branch-lvl2" d="M 260 100 L 360 150" stroke-width="1" />
+            <path class="fractal-branch branch-lvl2" d="M 260 300 L 360 250" stroke-width="1" />
+            <path class="fractal-branch branch-lvl2" d="M 260 300 L 360 350" stroke-width="1" />
+            
+            <!-- Level 3 Branches (8 branches) -->
+            <path class="fractal-branch branch-lvl3 accented-branch" d="M 360 50 L 440 25" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 50 L 440 75" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 150 L 440 125" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 150 L 440 175" stroke-width="0.8" />
+            
+            <path class="fractal-branch branch-lvl3" d="M 360 250 L 440 225" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 250 L 440 275" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 350 L 440 325" stroke-width="0.8" />
+            <path class="fractal-branch branch-lvl3" d="M 360 350 L 440 375" stroke-width="0.8" />
+
+            <!-- Human Origin Node -->
+            <g class="fractal-node human-node">
+              <circle cx="60" cy="200" r="15" class="node-ring" />
+              <circle cx="60" cy="200" r="6" class="node-center" />
+            </g>
+            
+            <!-- Intermediate Nodes (Level 1) -->
+            <g class="fractal-node agent-node-lvl1">
+              <circle cx="160" cy="200" r="4.5" class="node-simple" />
+              <circle cx="160" cy="200" r="2" class="node-inner-simple" />
+            </g>
+            
+            <!-- Intermediate Nodes (Level 2) -->
+            <g class="fractal-node agent-node-lvl2">
+              <circle cx="260" cy="100" r="4" class="node-simple accented-node" />
+              <circle cx="260" cy="100" r="1.8" class="node-inner-simple accented-inner" />
+            </g>
+            <g class="fractal-node agent-node-lvl2">
+              <circle cx="260" cy="300" r="4" class="node-simple" />
+              <circle cx="260" cy="300" r="1.8" class="node-inner-simple" />
+            </g>
+            
+            <!-- Intermediate Nodes (Level 3) -->
+            <g class="fractal-node agent-node-lvl3">
+              <circle cx="360" cy="50" r="3.5" class="node-simple accented-node" />
+              <circle cx="360" cy="50" r="1.5" class="node-inner-simple accented-inner" />
+            </g>
+            <g class="fractal-node agent-node-lvl3">
+              <circle cx="360" cy="150" r="3.5" class="node-simple" />
+              <circle cx="360" cy="150" r="1.5" class="node-inner-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl3">
+              <circle cx="360" cy="250" r="3.5" class="node-simple" />
+              <circle cx="360" cy="250" r="1.5" class="node-inner-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl3">
+              <circle cx="360" cy="350" r="3.5" class="node-simple" />
+              <circle cx="360" cy="350" r="1.5" class="node-inner-simple" />
+            </g>
+            
+            <!-- End Leaf Nodes (Level 4) -->
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="25" r="3" class="node-simple accented-node" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="75" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="125" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="175" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="225" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="275" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="325" r="3" class="node-simple" />
+            </g>
+            <g class="fractal-node agent-node-lvl4">
+              <circle cx="440" cy="375" r="3" class="node-simple" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soluções Section -->
+  <section class="solutions-section" id="solucoes">
+    <div class="solutions-container">
+      <div class="solutions-header">
+        <span class="solutions-label scroll-reveal">soluções</span>
+        <h2 class="solutions-title scroll-reveal">Como trabalhar com a IA PhD</h2>
+        <p class="solutions-subtitle scroll-reveal">
+          Do treinamento do seu time à implementação completa — presencial ou remoto.
+        </p>
+      </div>
+
+      <div class="solutions-list">
+        <!-- Item 01 -->
+        <div class="solutions-item" id="solution-item-1">
+          <div class="solution-left">
+            <span class="solution-number">01</span>
+            <div class="solution-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+          </div>
+          <div class="solution-center">
+            <div class="solution-title-row">
+              <h3 class="solution-item-title">Imersão presencial</h3>
+              <span class="solution-item-tag">presencial · turma</span>
+            </div>
+            <p class="solution-item-desc">Aprenda a construir funcionários agênticos em uma imersão prática em turma, do zero à operação.</p>
+          </div>
+          <div class="solution-right">
+            <a href="#contato" class="solution-action">Garantir vaga <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- Item 02 -->
+        <div class="solutions-item" id="solution-item-2">
+          <div class="solution-left">
+            <span class="solution-number">02</span>
+            <div class="solution-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+          </div>
+          <div class="solution-center">
+            <div class="solution-title-row">
+              <h3 class="solution-item-title">Consultoria dedicada</h3>
+              <span class="solution-item-tag">in loco · alagoas</span>
+            </div>
+            <p class="solution-item-desc">Nós entramos na sua operação e implementamos os agentes junto com o seu time, sob medida.</p>
+          </div>
+          <div class="solution-right">
+            <a href="#contato" class="solution-action">Agende uma conversa <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- Item 03 -->
+        <div class="solutions-item" id="solution-item-3">
+          <div class="solution-left">
+            <span class="solution-number">03</span>
+            <div class="solution-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
+          </div>
+          <div class="solution-center">
+            <div class="solution-title-row">
+              <h3 class="solution-item-title">Consultoria remota</h3>
+              <span class="solution-item-tag">remoto · brasil</span>
+            </div>
+            <p class="solution-item-desc">A mesma implementação dedicada, conduzida remotamente para empresas de qualquer lugar.</p>
+          </div>
+          <div class="solution-right">
+            <a href="#contato" class="solution-action">Agende uma conversa <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quem Lidera Section -->
+  <section class="leader-section" id="sobre">
+    <div class="leader-container">
+      <!-- Left Column: Position & Highlights -->
+      <div class="leader-content">
+        <span class="leader-label leader-reveal-item">quem lidera</span>
+        <h2 class="leader-title leader-reveal-item">Engenharia de IA com base acadêmica e prática</h2>
+        <p class="leader-intro leader-reveal-item">
+          A IA PhD é liderada por Bruno Bessa, PhD — pesquisador, professor e empreendedor que une rigor acadêmico à implementação real de inteligência artificial em empresas.
+        </p>
+        
+        <!-- Authority Highlights -->
+        <div class="leader-stats">
+          <div class="stat-item leader-reveal-item">
+            <span class="stat-value">PhD</span>
+            <span class="stat-desc">Ciências da Computação</span>
+          </div>
+          <div class="stat-item leader-reveal-item">
+            <span class="stat-value">UFPE</span>
+            <span class="stat-desc">Doutorado</span>
+          </div>
+          <div class="stat-item leader-reveal-item">
+            <span class="stat-value">IFAL</span>
+            <span class="stat-desc">Pesquisa e ensino</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Credentials & LinkedIn -->
+      <div class="leader-details">
+        <ul class="credentials-list">
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Doutor em Ciências da Computação — Universidade Federal de Pernambuco (UFPE)</p>
+          </li>
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Mestre em Engenharia de Software</p>
+          </li>
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Professor no Centro de Informática do Instituto Federal de Alagoas (IFAL)</p>
+          </li>
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Líder de grupo de pesquisa em Ciências Cognitivas e Tecnologia Educacional</p>
+          </li>
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Diretor de Tecnologia e Inovação da Assespro-AL</p>
+          </li>
+          <li class="credential-item leader-reveal-item">
+            <span class="credential-marker"></span>
+            <p class="credential-text">Cofundador do Conselho de Jovens Empreendedores de Alagoas (CJE-AL)</p>
+          </li>
+        </ul>
+        
+        <div class="leader-action leader-reveal-item">
+          <a href="https://www.linkedin.com/in/bruno-bessa-ph-d-94a33120/" target="_blank" rel="noopener noreferrer" class="leader-linkedin-link">
+            Perfil no LinkedIn <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final Section -->
+  <section class="final-cta-section" id="diagnostico">
+    <!-- SVG Network Background -->
+    <div class="final-cta-bg-visual" aria-hidden="true">
+      <svg class="final-cta-svg" viewBox="0 0 600 400" fill="none" stroke="currentColor">
+        <!-- Diamond network connections -->
+        <path d="M 180 200 L 300 100 L 420 200 L 300 300 Z" stroke="var(--text-primary)" stroke-width="0.8" opacity="0.10" />
+        <!-- Cross connections through the center -->
+        <line x1="180" y1="200" x2="420" y2="200" stroke="var(--text-primary)" stroke-width="0.8" opacity="0.10" />
+        <line x1="300" y1="100" x2="300" y2="300" stroke="var(--text-primary)" stroke-width="0.8" opacity="0.10" />
+        
+        <!-- Faint concentric network circle -->
+        <circle cx="300" cy="200" r="120" stroke="var(--text-primary)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.08" />
+        
+        <!-- Subtle Mandelbrot Logo Mark Silhouette in center -->
+        <circle cx="300" cy="200" r="24" stroke="var(--text-primary)" stroke-width="0.8" opacity="0.06" />
+        <circle cx="300" cy="200" r="10" stroke="var(--primary-color)" stroke-width="1" opacity="0.08" />
+
+        <!-- Nodes -->
+        <circle cx="300" cy="200" r="3.5" class="final-cta-node core-node-accent" fill="var(--bg-color)" stroke="var(--primary-color)" stroke-width="1.2" opacity="0.3" />
+        <circle cx="180" cy="200" r="2.5" class="final-cta-node" fill="var(--bg-color)" stroke="var(--text-primary)" stroke-width="1" opacity="0.2" />
+        <circle cx="420" cy="200" r="2.5" class="final-cta-node" fill="var(--bg-color)" stroke="var(--text-primary)" stroke-width="1" opacity="0.2" />
+        <circle cx="300" cy="100" r="2.5" class="final-cta-node" fill="var(--bg-color)" stroke="var(--text-primary)" stroke-width="1" opacity="0.2" />
+        <circle cx="300" cy="300" r="2.5" class="final-cta-node" fill="var(--bg-color)" stroke="var(--text-primary)" stroke-width="1" opacity="0.2" />
+
+        <!-- Traveling Signal Data Particle -->
+        <circle r="3" fill="var(--primary-color)" class="animated-signal" opacity="0.5">
+          <animateMotion dur="10s" repeatCount="indefinite" path="M 180 200 L 300 100 L 420 200 L 300 300 Z" />
+        </circle>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="final-cta-container">
+      <span class="final-cta-label final-cta-reveal-item">vamos conversar</span>
+      <h2 class="final-cta-title final-cta-reveal-item">Pronto para transformar sua empresa em uma organização agêntica?</h2>
+      <p class="final-cta-subtitle final-cta-reveal-item">
+        Comece com uma conversa. Entendemos sua operação e mostramos onde os agentes de IA podem gerar mais valor.
+      </p>
+      
+      <div class="final-cta-actions final-cta-reveal-item">
+        <a href="#contato" class="btn btn-primary">Fale com a IA PhD <span class="arrow">→</span></a>
+      </div>
+      
+      <span class="final-cta-note final-cta-reveal-item">Resposta rápida · Diagnóstico sem compromisso</span>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-grid scroll-reveal">
+        <!-- Coluna 1: Marca -->
+        <div class="footer-col brand-col">
+          <div class="logo-group">
+            <img class="mandelbrot-logo" src="assets/logo.png" alt="" width="24" height="24">
+            <span class="logo-text">IA PhD</span>
+          </div>
+          <p class="footer-tagline">
+            Engenharia de IA agêntica. Construímos funcionários que operam, decidem e executam.
+          </p>
+        </div>
+
+        <!-- Coluna 2: Navegação -->
+        <div class="footer-col">
+          <span class="footer-col-label">navegação</span>
+          <nav class="footer-nav" aria-label="Navegação do rodapé">
+            <a href="#metodologia" class="footer-link">Metodologia</a>
+            <a href="#solucoes" class="footer-link">Soluções</a>
+            <a href="#sobre" class="footer-link">Sobre</a>
+            <a href="#contato" class="footer-link">Contato</a>
+          </nav>
+        </div>
+
+        <!-- Coluna 3: Soluções -->
+        <div class="footer-col">
+          <span class="footer-col-label">soluções</span>
+          <nav class="footer-nav" aria-label="Nossas soluções">
+            <a href="#solucoes" class="footer-link">Imersão presencial</a>
+            <a href="#solucoes" class="footer-link">Consultoria dedicada</a>
+            <a href="#solucoes" class="footer-link">Consultoria remota</a>
+          </nav>
+        </div>
+
+        <!-- Coluna 4: Contato -->
+        <div class="footer-col">
+          <span class="footer-col-label">contato</span>
+          <div class="footer-contact-info">
+            <a href="https://imersao.aiphd.com.br" target="_blank" rel="noopener noreferrer" class="footer-link font-sans-label">imersao.aiphd.com.br</a>
+            <a href="https://instagram.com/ia.phd" target="_blank" rel="noopener noreferrer" class="footer-link font-sans-label">@ia.phd</a>
+            <a href="#contato" class="footer-action-link">Fale com a IA PhD <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra Inferior -->
+      <div class="footer-bottom scroll-reveal">
+        <span class="copyright">© 2026 IA PhD. Todos os direitos reservados.</span>
+        <div class="legal-links">
+          <a href="#privacidade" class="footer-link">Privacidade</a>
+          <span class="separator">·</span>
+          <a href="#termos" class="footer-link">Termos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script to run the 3D rotating wireframe sphere logic and tooltips -->
+  <script src="script.js" defer></script>
+</body>
+
+</html>
