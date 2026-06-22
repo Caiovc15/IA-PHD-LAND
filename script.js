@@ -632,4 +632,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     finalCtaObserver.observe(finalCtaSection);
   }
+
+  // 13. Mobile Menu Navigation (Hamburger Toggle)
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (menuToggle && navMenu) {
+    const toggleMenu = () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isOpen);
+      menuToggle.classList.toggle('open');
+      navMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    };
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('open')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        toggleMenu();
+      }
+    });
+  }
 });
