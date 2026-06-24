@@ -36,19 +36,12 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body {
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
   position: relative;
 }
 
@@ -766,10 +759,10 @@ body {
   display: block;
 }
 
-/* Strict 3-Column Grid */
+/* 4-Column Grid */
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   height: 100%;
   position: relative;
@@ -874,6 +867,10 @@ body {
 
 .pillars-section.is-visible .stage-3 .stage-content {
   animation-delay: 0.6s;
+}
+
+.pillars-section.is-visible .stage-4 .stage-content {
+  animation-delay: 0.8s;
 }
 
 @keyframes fadeSlideUp {
@@ -1362,29 +1359,12 @@ body {
    Seção "A metodologia"
    ========================================================================== */
 
-.methodology-section {
+.metodo { position: relative; padding: 6rem 0; background-color: var(--bg-color); }
+.metodo-sticky {
   position: relative;
-  z-index: 10;
-  padding: 8rem 2rem;
-  background-color: var(--bg-color);
-  overflow: hidden;
 }
-
-.methodology-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.methodology-header {
-  max-width: 680px;
-  margin: 0 auto 6rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+.metodo-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+.metodo-head { text-align: center; margin-bottom: 4vh; }
 .methodology-label {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -1393,8 +1373,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 1.25rem;
+  display: inline-block;
 }
-
 .methodology-title {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 4.5vw, 2.25rem);
@@ -1404,7 +1384,6 @@ body {
   color: var(--text-primary);
   margin-bottom: 1rem;
 }
-
 .methodology-subtitle {
   font-size: 1.05rem;
   line-height: 1.5;
@@ -1412,185 +1391,137 @@ body {
   color: var(--text-secondary);
   letter-spacing: 0.02em;
 }
-
-.timeline-wrapper {
-  position: relative;
-  width: 100%;
-  margin-top: 4rem;
-  padding: 2rem 0;
-}
-
-/* Timeline vertical line */
-.timeline-line-container {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.timeline-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.timeline-bg-line {
-  stroke: rgba(10, 10, 10, 0.06);
-  stroke-width: 2px;
-}
-
-.timeline-progress-line {
-  stroke: var(--primary-color);
-  stroke-width: 2px;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.1s ease-out;
-}
-
-/* Timeline steps */
-.timeline-steps {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 8rem;
-}
-
-.timeline-step {
-  position: relative;
+.metodo-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;   /* esquerda diagrama | direita card */
+  gap: 5%;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-/* Content Box alignment */
-.step-content-box {
-  position: relative;
-  width: 100%;
-  max-width: 450px;
-  padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(10, 10, 10, 0.03);
+.metodo-right-col { display: flex; flex-direction: column; width: 100%; position: relative; }
+.metodo-cards { position: relative; min-height: 420px; width: 100%; display: flex; flex-direction: column; }
+.metodo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.metodo-btn {
+  background: transparent;
+  border: 1px solid rgba(26, 58, 92, 0.3);
+  color: var(--primary-color);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.metodo-btn:hover {
+  background: rgba(26, 58, 92, 0.05);
+  border-color: var(--primary-color);
+}
+.metodo-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.metodo-indicator {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.metodo-indicator #metodo-current {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+.metodo-card {
+  position: absolute; inset: 0;              /* TODOS no mesmo lugar */
+  opacity: 0; visibility: hidden;
+  transition: opacity .5s ease, transform .5s ease;
+  transform: translateY(20px);
+  /* Estilos do card */
+  padding: 3.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(10, 10, 10, 0.04);
   border-radius: 16px;
   box-shadow: 
     0 4px 30px rgba(0, 0, 0, 0.01),
-    inset 0 0 20px rgba(255, 255, 255, 0.6);
+    inset 0 0 20px rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.6s ease, box-shadow 0.6s ease;
 }
-
-.timeline-step.step-left {
-  text-align: right;
+.metodo-card.is-active { 
+  opacity: 1; visibility: visible; transform: translateY(0); 
+  border-color: rgba(26, 58, 92, 0.15);
+  box-shadow: 
+    0 10px 40px rgba(26, 58, 92, 0.04),
+    inset 0 0 20px rgba(255, 255, 255, 1);
+  pointer-events: auto;
+  z-index: 2;
 }
-
-.timeline-step.step-left .step-content-box {
-  grid-column: 1;
-  justify-self: end;
+.mobile-level-indicator {
+  display: none;
+  margin-bottom: 1.5rem;
 }
-
-.timeline-step.step-right {
-  text-align: left;
+.mobile-level-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(26, 58, 92, 0.05);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
 }
-
-.timeline-step.step-right .step-content-box {
-  grid-column: 2;
-  justify-self: start;
-}
-
-/* Timeline step markers exactly on the line */
-.step-marker-container {
+.scrolly-card-number {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+  top: 2rem;
+  right: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(26, 58, 92, 0.04);
+  line-height: 1;
   pointer-events: none;
 }
-
-.step-marker {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--bg-color);
-  border: 1.5px solid rgba(10, 10, 10, 0.15);
-  transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
-}
-
-.timeline-step.is-active .step-marker {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  transform: scale(1.2);
-}
-
-/* Number style (large, thin, low opacity) */
-.step-number {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: rgba(26, 58, 92, 0.12);
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-
-.timeline-step.is-active .step-number {
-  color: rgba(26, 58, 92, 0.25);
-  transition: color 0.5s ease;
-}
-
-/* Icon style */
-.step-icon {
+.scrolly-card-icon {
   width: 32px;
   height: 32px;
-  color: var(--text-secondary);
-  margin-bottom: 1.25rem;
-  transition: color 0.5s ease;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
 }
-
-.timeline-step.step-left .step-icon {
-  margin-left: auto;
-}
-
-.step-icon svg {
+.scrolly-card-icon svg {
   width: 100%;
   height: 100%;
   stroke: currentColor;
   stroke-width: 1px;
   fill: none;
 }
-
-.timeline-step.is-active .step-icon {
-  color: var(--primary-color);
-}
-
-/* Text styles */
-.step-title {
+.scrolly-card-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
-
-.step-desc {
-  font-size: 0.95rem;
+.scrolly-card-desc {
+  font-size: 1rem;
   font-weight: 300;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
-
-/* Delivery box style */
-.step-delivery {
-  border-top: 1px solid rgba(10, 10, 10, 0.05);
-  padding-top: 1rem;
+.scrolly-card-delivery {
+  border-top: 1px solid rgba(10, 10, 10, 0.06);
+  padding-top: 1.25rem;
 }
-
 .delivery-label {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -1601,7 +1532,6 @@ body {
   display: block;
   margin-bottom: 0.25rem;
 }
-
 .delivery-text {
   font-size: 0.9rem;
   font-weight: 300;
@@ -1609,90 +1539,119 @@ body {
   line-height: 1.4;
 }
 
-.timeline-step.is-active .step-content-box {
-  border-color: rgba(26, 58, 92, 0.15);
-  box-shadow: 
-    0 10px 40px rgba(26, 58, 92, 0.03),
-    inset 0 0 20px rgba(255, 255, 255, 0.8);
+/* Left Column: Sticky Diagram */
+.metodo-diagrama {
+  display: flex;
+  height: max-content;
+  position: relative;
 }
-
-/* Responsive styles for tablets and mobile */
-@media (max-width: 768px) {
-  .timeline-line-container {
-    left: 2rem;
-    transform: none;
-  }
-
-  .timeline-steps {
-    gap: 4rem;
-  }
-
-  .timeline-step {
-    grid-template-columns: 1fr;
-    text-align: left !important;
-  }
-
-  .timeline-step.step-left .step-content-box,
-  .timeline-step.step-right .step-content-box {
-    grid-column: 1;
-    justify-self: stretch;
-    max-width: 100%;
-    margin-left: 4rem; /* offset from the left timeline line */
-  }
-
-  .step-marker-container {
-    left: 2rem;
-    transform: translate(-50%, -50%);
-  }
-
-  .timeline-step.step-left .step-icon {
-    margin-left: 0;
-  }
+.diagram-connections {
+  position: absolute;
+  left: 21px; /* Centers the line behind the 44px icons */
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  z-index: 1;
 }
-
-/* Fallback visibility rules for non-JS environment */
-.timeline-progress-line {
-  stroke-dashoffset: 1;
+.diagram-line-bg {
+  stroke: rgba(10, 10, 10, 0.06);
+  stroke-width: 2px;
 }
-
-.timeline-step .step-content-box {
+.diagram-line-progress {
+  stroke: var(--primary-color);
+  stroke-width: 2px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.6s ease;
+}
+.diagram-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.diagram-node {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: all 0.4s ease;
+}
+.diagram-node.aceso {
   opacity: 1;
-  filter: none;
+  filter: grayscale(0%);
+}
+.node-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 1.5px solid rgba(10, 10, 10, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.4s ease;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+.diagram-node.aceso .node-icon-wrapper {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(26, 58, 92, 0.05);
+}
+.node-icon-wrapper svg {
+  width: 20px;
+  height: 20px;
+}
+.node-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.node-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.4s ease;
+}
+.diagram-node.aceso .node-label {
+  color: var(--primary-color);
+}
+.node-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.4;
 }
 
-/* Under JS-enabled environment, we hide them initially for scroll reveal */
-.js-enabled .timeline-step {
-  opacity: 0;
-  transform: translateY(30px);
-  filter: blur(8px);
-  transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.0s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.0s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
-}
-
-.js-enabled .timeline-step.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
+@media (max-width: 900px) {
+  .metodo { padding: 4rem 0; }
+  .metodo-cols { grid-template-columns: 1fr; gap: 2rem; }
+  .metodo-diagrama { display: none; }
+  .metodo-cards { min-height: 50vh; }
+  .metodo-card { padding: 2.5rem 2rem; }
+  .mobile-level-indicator { display: inline-block; }
+  .scrolly-card-number { font-size: 3.5rem; top: 1.5rem; right: 1.5rem; }
 }
 
 /* Prefers Reduced Motion override */
 @media (prefers-reduced-motion: reduce) {
-  .js-enabled .timeline-step {
+  .diagram-node {
+    transition: none !important;
+  }
+  .scrolly-card {
+    transition: none !important;
     opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
-  
-  .timeline-progress-line {
-    stroke-dashoffset: 0 !important;
-    transition: none !important;
-  }
-
-  .step-marker, .step-icon, .step-content-box, .step-number {
-    transition: none !important;
+    transform: scale(1) !important;
   }
 }
 

@@ -456,53 +456,90 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
   }
 
-  // 8. Methodology Section Timeline Animations
-  const timelineSteps = document.querySelectorAll('.timeline-step');
-  if (timelineSteps.length > 0) {
-    // Scroll reveal for timeline steps
-    const stepObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
+  // 8. Methodology Section Slider Animations
+  const sec = document.querySelector('.metodo');
+  const cards = document.querySelectorAll('.metodo-card');
+  const niveis = document.querySelectorAll('.metodo-diagrama .nivel');
+  const diagramProgressLine = document.getElementById('diagram-progress-line');
+  const btnPrev = document.querySelector('.metodo-btn.prev');
+  const btnNext = document.querySelector('.metodo-btn.next');
+  const currentIndicator = document.getElementById('metodo-current');
+  
+  if (sec && cards.length > 0 && niveis.length > 0) {
+    const N = cards.length;
+    const mapa = [[0,1], [2], [3], [3], [4]]; 
+    let currentIdx = 0;
 
-    timelineSteps.forEach(step => stepObserver.observe(step));
-
-    // Active status observer for timeline step markers
-    const activeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-active');
-        } else {
-          entry.target.classList.remove('is-active');
-        }
-      });
-    }, { threshold: 0.5, rootMargin: '-20% 0px -30% 0px' });
-
-    timelineSteps.forEach(step => activeObserver.observe(step));
-  }
-
-  // Draw timeline progress line on scroll
-  const timelineProgressLine = document.querySelector('.timeline-progress-line');
-  const timelineWrapper = document.querySelector('.timeline-wrapper');
-  if (timelineProgressLine && timelineWrapper) {
-    const updateTimelineProgress = () => {
-      const rect = timelineWrapper.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const startOffset = windowHeight / 2;
-      const totalHeight = rect.height;
-      const scrolled = startOffset - rect.top;
+    function updateSlider() {
+      // Update cards visibility
+      cards.forEach((c, i) => c.classList.toggle('is-active', i === currentIdx));
       
-      let progress = scrolled / totalHeight;
-      progress = Math.max(0, Math.min(1, progress));
-      
-      timelineProgressLine.style.strokeDashoffset = 1 - progress;
-    };
+      // Update diagram nodes
+      niveis.forEach((n, i) => n.classList.toggle('aceso', mapa[currentIdx] ? mapa[currentIdx].includes(i) : false));
 
-    window.addEventListener('scroll', updateTimelineProgress, { passive: true });
-    updateTimelineProgress();
+      // Update progress line
+      if (diagramProgressLine && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const percentages = { 0: 0, 1: 0.25, 2: 0.5, 3: 0.75, 4: 1 };
+        const highestLevelIndex = mapa[currentIdx] ? Math.max(...mapa[currentIdx]) : 0;
+        const revealAmount = 500 * (percentages[highestLevelIndex] || 0);
+        diagramProgressLine.style.strokeDashoffset = 1000 - revealAmount;
+      }
+
+      // Update indicator
+      if (currentIndicator) {
+        currentIndicator.textContent = String(currentIdx + 1).padStart(2, '0');
+      }
+    }
+
+    function nextCard() {
+      currentIdx = (currentIdx + 1) % N;
+      updateSlider();
+    }
+
+    function prevCard() {
+      currentIdx = (currentIdx + N - 1) % N;
+      updateSlider();
+    }
+
+    // Button Listeners
+    if (btnNext) btnNext.addEventListener('click', nextCard);
+    if (btnPrev) btnPrev.addEventListener('click', prevCard);
+
+    // Keyboard support when section is in view
+    window.addEventListener('keydown', (e) => {
+      const rect = sec.getBoundingClientRect();
+      // Only capture arrows if section is visible in viewport
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (e.key === 'ArrowRight') nextCard();
+        if (e.key === 'ArrowLeft') prevCard();
+      }
+    });
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    sec.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    sec.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold) {
+        nextCard(); // Swiped left -> next
+      }
+      if (touchEndX > touchStartX + threshold) {
+        prevCard(); // Swiped right -> prev
+      }
+    }
+
+    // Initialize
+    updateSlider();
   }
 
   // 9. Efeito Multiplicador Section Fractal Animations
